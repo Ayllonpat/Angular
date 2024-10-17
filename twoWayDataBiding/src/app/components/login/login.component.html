@@ -1,0 +1,22 @@
+<!-- 1.Property binding: print value in a content place 
+    We use the moustache syntax to show the variable value
+-->
+<p>{{valoracion}}</p>
+
+<!-- Property binding: its posible to apply the 
+    variable value inside an element atribute
+-->
+<img [src]="imgUrl">
+
+<!-- 2.Property binding: la comunicacion se realiza en el sentido contrarios. 
+    Es decir, ahora la informacion viaja desde el html 
+-->
+
+<button class="btn btn-dark" (click)="showUserInfo()">Show user info</button>
+
+<div>
+    <input [(ngModel)]="nombre" />
+    <p>
+        {{nombre}}
+    </p>
+</div>

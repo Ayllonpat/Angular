@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center p-3 ">
+    <div class="row max-width-75">
+        <div class="border border-dark row h-25 d-inline-block w-75 ms-1 position-sticky">
+            <div class="col-12 text-center p-2">
+                <h3>{{ valor1 }} {{ operacion }} {{ valor2 }}</h3> <!-- Solo muestra valor1, operación y valor2 -->
+            </div>
+            <div class="col-12 text-center p-2 mt-4 d-flex justify-content-end">
+                <h4>{{ resultado }}</h4> <!-- Mostrar el resultado aquí -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(uno)">{{uno}}</div>
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(dos)">{{dos}}</div>
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(tres)">{{tres}}</div>
+        </div>
+        <div class="row">         
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(cuatro)">{{cuatro}}</div>
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(cinco)">{{cinco}}</div>
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(seis)">{{seis}}</div>
+        </div>
+        <div class="row">
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(siete)">{{siete}}</div>
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(ocho)">{{ocho}}</div>
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(nueve)">{{nueve}}</div>
+        </div>
+        <div class="row">
+            <div class="btn btn-dark col-3 p-4 m-1" (click)="presionarNumero(cero)">{{cero}}</div>
+            <div class="btn btn-dark col-2 p-4 m-1" (click)="presionarOperacion(mas)">{{mas}}</div>
+            <div class="btn btn-dark col-2 p-4 m-1" (click)="presionarOperacion(menos)">{{menos}}</div>
+            <div class="btn btn-dark col-2 p-3 m-1" (click)="calcular()">{{igual}}</div>
+        </div>
+        <div class="row w-25">
+            <div class="btn btn-danger col-12 p-4 m-1" (click)="borrar()">Borrar</div> <!-- Botón de borrar -->
+        </div>
+    </div>
+</div>
