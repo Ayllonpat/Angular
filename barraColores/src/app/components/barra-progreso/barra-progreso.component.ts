@@ -8,9 +8,13 @@ import { find } from 'rxjs';
 })
 export class BarraProgresoComponent {
 
+  valoracion = 30;
+  ratingClass = 'danger';
 
   cambiarColor(){
-    
+    if(this.valoracion < 50){
+      this.ratingClass = 'danger'
+    }
   }
 
 }
