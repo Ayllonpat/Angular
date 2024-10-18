@@ -5,15 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VehiculoListComponent } from './components/vehiculos/vehiculos.component';
+import { MaterialModule } from './modules/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VehiculoListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    MaterialModule
   ],
   providers: [
     provideAnimationsAsync()
