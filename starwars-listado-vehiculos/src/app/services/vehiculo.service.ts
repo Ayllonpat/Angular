@@ -10,6 +10,6 @@ export class VehiculoService {
   constructor(private http: HttpClient) {}
 
   getVehiculoList(): Observable<Vehiculo[]> {
-    return this.http.get<Vehiculo[]>('http://localhost:3000/locations');
+    return this.http.get<Vehiculo[]>('http://localhost:3000/results');
   }
 }

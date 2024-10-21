@@ -13,12 +13,12 @@ export class VehiculoListComponent implements OnInit {
   constructor(private vehiculoService: VehiculoService) {}
 
   ngOnInit(): void {
-    this.vehiculoService.getVehiculoList().subscribe((respuesta) => {
-      this.listadoCasas = respuesta;
+    this.vehiculoService.getVehiculoList().subscribe((respuesta ) => { 
+      this.listadoCasas = respuesta;//si llamamos a la api directamente tiene que ser respuesta.result
     });
   }
 
-  trackByUrl(index: number, item: Vehiculo): string {
-    return item.url; // Utilizamos la URL como identificador único
-  }
+  //trackByUrl(index: number, item: Vehiculo): string {
+   // return item.url; 
+  //}
 }

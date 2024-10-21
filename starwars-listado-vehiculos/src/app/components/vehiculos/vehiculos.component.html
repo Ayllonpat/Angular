@@ -1,11 +1,22 @@
 <div class="container-fluid">
     <div class="row mt-2 mb-2">
-      <div *ngFor="let item of listadoCasas; trackBy: trackByUrl" class="col-md-3 col-12">
-        <div class="card" style="width: 18rem">
-          <!-- Imagen genérica, puedes cambiarla o agregar la tuya -->
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ item.name }}" />
+      @for(item of listadoCasas; track item.id){
+      <div class="col-md-3 col-12">
+        <div class="card mt-1 p-2" style="width: 18rem">
+          
+          <img src="https://via.placeholder.com/150" class="card-img-top mt-1" alt="{{ item.name }}" />
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
+            <p><strong>Model:</strong> {{ item.model }}</p>
+            <p><strong>Manufacturer:</strong> {{ item.manufacturer }}</p>
+            <p><strong>Cost in Credits:</strong> {{ item.cost_in_credits }}</p>
+            <p><strong>Length:</strong> {{ item.length }} meters</p>
+            <p><strong>Max Speed:</strong> {{ item.max_atmosphering_speed }}</p>
+            <p><strong>Crew:</strong> {{ item.crew }}</p>
+            <p><strong>Passengers:</strong> {{ item.passengers }}</p>
+            <p><strong>Cargo Capacity:</strong> {{ item.cargo_capacity }}</p>
+            <p><strong>Consumables:</strong> {{ item.consumables }}</p>
+            <p><strong>Vehicle Class:</strong> {{ item.vehicle_class }}</p>
             <button
               type="button"
               class="btn btn-primary"
@@ -16,11 +27,13 @@
             </button>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   
+  
     <!-- Modal para cada Vehículo -->
-    <div *ngFor="let item of listadoCasas" [attr.id]="'modal' + item.url" class="modal fade" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <!--  @for(item of listadoCasas; track item.id){
+    <div class="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -44,6 +57,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>}-->
   </div>
   

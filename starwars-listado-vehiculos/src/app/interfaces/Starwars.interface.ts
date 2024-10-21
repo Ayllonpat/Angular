@@ -1,4 +1,4 @@
-export type Root = Vehiculo[]
+
 
 export interface Vehiculo {
   name: string
