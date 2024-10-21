@@ -2,10 +2,10 @@
     <div class="row mt-2 mb-2">
       @for(item of listadoPersonajes; track $index){
         <div class="col-md-3 col-12 d-flex align-items-stretch mb-2" id="card">
-            <div class="card mt-1 p-2" style="width: 18rem">
+            <div class="card mt-1 mb-1 p-2 bg-dark border border-dark" style="width: 18rem">
           
             <img class="card-img-top mt-1" alt="{{ item.name }}" [src]="item.image" id="img"/>
-                <div class="card-body text-white bg-dark border border-dark">
+                <div class="card-body text-white">
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p><strong>Status:</strong> {{ item.status }}</p>
                     <p><strong>Especie:</strong> {{ item.species }}</p>
