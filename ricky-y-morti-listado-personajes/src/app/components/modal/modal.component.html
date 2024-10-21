@@ -1,0 +1,20 @@
+<div class="bg-dark">
+    <div class="modal-header">
+        <h5 class="modal-title text-white">{{ personaje.name }}</h5>  
+    </div>
+    <div class="d-flex text-white">
+        <img [src]="personaje.image" class="img-fluid mb-3" alt="{{ personaje.name }}" />
+        <div class="modal-body">
+            
+            <p><strong>Status:</strong> {{ personaje.status }}</p>
+            <p><strong>Especie:</strong> {{ personaje.species }}</p>
+            <p><strong>Tipo:</strong> {{ personaje.type }}</p>
+            <p><strong>Género:</strong> {{ personaje.gender }}</p>
+            <p><strong>Origen:</strong> {{ personaje.origin.name }}</p>
+            <p><strong>Localización:</strong> {{ personaje.location.name }}</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+    </div>
+</div>

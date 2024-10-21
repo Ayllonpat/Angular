@@ -8,11 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonajesComponent } from './components/personajes/personajes.component';
 import { MaterialModule } from './modules/material.module';
 import { provideHttpClient } from '@angular/common/http';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonajesComponent
+    PersonajesComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
