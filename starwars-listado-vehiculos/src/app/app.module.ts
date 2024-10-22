@@ -8,11 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VehiculoListComponent } from './components/vehiculos/vehiculos.component';
 import { MaterialModule } from './modules/material.module';
 import { provideHttpClient } from '@angular/common/http';
+import { PersonajesComponent } from './components/personajes/personajes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VehiculoListComponent
+    VehiculoListComponent,
+    PersonajesComponent
   ],
   imports: [
     BrowserModule,
