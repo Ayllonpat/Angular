@@ -1,0 +1,21 @@
+<div class="bg-dark p-3 ">
+    <h5 class="card-title">{{ vehiculo.name }}</h5>    
+    <div class="d-flex text-white">
+        <!--<img [src]="vehiculo.image" class="img-fluid mb-3" alt="{{ vehiculo.name }}" />   -->
+        <div class="m-3 p-2">      
+            <p><strong>Model:</strong> {{ vehiculo.model }}</p>
+            <p><strong>Manufacturer:</strong> {{ vehiculo.manufacturer }}</p>
+            <p><strong>Cost in Credits:</strong> {{ vehiculo.cost_in_credits }}</p>
+            <p><strong>Length:</strong> {{ vehiculo.length }} meters</p>
+            <p><strong>Max Speed:</strong> {{ vehiculo.max_atmosphering_speed }}</p>
+            <p><strong>Crew:</strong> {{ vehiculo.crew }}</p>
+            <p><strong>Passengers:</strong> {{ vehiculo.passengers }}</p>
+            <p><strong>Cargo Capacity:</strong> {{ vehiculo.cargo_capacity }}</p>
+            <p><strong>Consumables:</strong> {{ vehiculo.consumables }}</p>
+            <p><strong>Vehicle Class:</strong> {{ vehiculo.vehicle_class }}</p>
+        </div> 
+    </div>
+    <div class="text-end">
+        <button type="button" class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+    </div>
+</div>

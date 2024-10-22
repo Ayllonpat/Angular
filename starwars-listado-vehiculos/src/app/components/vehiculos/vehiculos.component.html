@@ -1,62 +1,21 @@
-<div class="container-fluid">
-    <div class="row mt-2 mb-2">
-      @for(item of listadoCasas; track item.id){
-      <div class="col-md-3 col-12">
-        <div class="card mt-1 p-2" style="width: 18rem">
+
+<div class="container-fluid" id="vehiculos">
+  <div class="row mt-2 mb-2">
+      @for(item of listadoVehiculos; track $index){
+        <div class="col-md-3 col-12 d-flex align-items-stretch mb-2" id="card">
+            <div class="card mt-1 mb-1 p-2 bg-dark border border-dark" style="width: 18rem">
           
-          <img src="https://via.placeholder.com/150" class="card-img-top mt-1" alt="{{ item.name }}" />
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p><strong>Model:</strong> {{ item.model }}</p>
-            <p><strong>Manufacturer:</strong> {{ item.manufacturer }}</p>
-            <p><strong>Cost in Credits:</strong> {{ item.cost_in_credits }}</p>
-            <p><strong>Length:</strong> {{ item.length }} meters</p>
-            <p><strong>Max Speed:</strong> {{ item.max_atmosphering_speed }}</p>
-            <p><strong>Crew:</strong> {{ item.crew }}</p>
-            <p><strong>Passengers:</strong> {{ item.passengers }}</p>
-            <p><strong>Cargo Capacity:</strong> {{ item.cargo_capacity }}</p>
-            <p><strong>Consumables:</strong> {{ item.consumables }}</p>
-            <p><strong>Vehicle Class:</strong> {{ item.vehicle_class }}</p>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              [attr.data-bs-target]="'#modal' + item.url"
-            >
-              Ver más
-            </button>
-          </div>
+            <img class="card-img-top mt-1" alt="{{ item.name }}" src="item.image" id="img"/>
+              <div class="card-body text-white">
+                <h5 class="card-title">{{ item.name }}</h5>
+              </div>
+              <button class="btn btn-danger" (click)="openModal(item)">Ver más</button>
+            </div>
         </div>
-      </div>}
-    </div>
-  
-  
-    <!-- Modal para cada Vehículo -->
-  <!--  @for(item of listadoCasas; track item.id){
-    <div class="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">{{ item.name }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Model:</strong> {{ item.model }}</p>
-            <p><strong>Manufacturer:</strong> {{ item.manufacturer }}</p>
-            <p><strong>Cost in Credits:</strong> {{ item.cost_in_credits }}</p>
-            <p><strong>Length:</strong> {{ item.length }} meters</p>
-            <p><strong>Max Speed:</strong> {{ item.max_atmosphering_speed }}</p>
-            <p><strong>Crew:</strong> {{ item.crew }}</p>
-            <p><strong>Passengers:</strong> {{ item.passengers }}</p>
-            <p><strong>Cargo Capacity:</strong> {{ item.cargo_capacity }}</p>
-            <p><strong>Consumables:</strong> {{ item.consumables }}</p>
-            <p><strong>Vehicle Class:</strong> {{ item.vehicle_class }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>}-->
+      }
   </div>
+</div>             
   
+
+
+

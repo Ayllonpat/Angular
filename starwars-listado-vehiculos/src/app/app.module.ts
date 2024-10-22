@@ -9,12 +9,20 @@ import { VehiculoListComponent } from './components/vehiculos/vehiculos.componen
 import { MaterialModule } from './modules/material.module';
 import { provideHttpClient } from '@angular/common/http';
 import { PersonajesComponent } from './components/personajes/personajes.component';
+import { PageNotFoundComponent } from './components/page.not.found/page.not.found.component';
+import { VehiculoModalComponent } from './components/vehiculo.modal/vehiculo.modal.component';
+import { PersonajeModalComponent } from './components/personaje.modal/personaje.modal.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VehiculoListComponent,
-    PersonajesComponent
+    PersonajesComponent,
+    PageNotFoundComponent,
+    VehiculoModalComponent,
+    PersonajeModalComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
