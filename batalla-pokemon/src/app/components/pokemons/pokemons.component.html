@@ -1,0 +1,33 @@
+<h2 class="text-center mt-4 text-danger"><em>SELECCIONA 2 POKEMONS</em></h2>
+
+<div class="d-flex justify-content-center">
+    <button class="text-center mt-4 bg-danger text-white" (keyup)="buttonCount = 0" routerLink="/batalla">Combatir</button>
+    <button class="text-center mt-4 bg-danger text-white">Deseleccionar</button>
+</div>
+<div class="row d-flex flex-wrap justify-content-center p-5">
+
+    @for (pokemon of listaPokemon; track $index) {
+
+        <div class="card col-12 col-xl-2 border-danger bg-dark text-white shadow-lg ms-4 mb-2">
+
+            <div class="carta">
+                <img class="card-img-top mx-2 my-3 w-50" [src]="getImage(pokemon)" alt="Pokemon img" />
+                <div class="card-body">
+                    <h4 class="card-title text-center">{{capitalizeFirstLetter(pokemon.name)}}</h4>
+                    <h6 class="text-center">Nº{{$index + 1}}</h6>
+                </div>
+                <input
+                    type="checkbox"
+                    [id]="pokemon.name"
+                    (click)="onCheckClick(pokemon)"
+                    [disabled]="buttonCount >= pokemonCount"
+                />
+
+                <label [for]="pokemon?.name"> Select</label>
+
+            </div>
+        
+        </div>
+    }
+
+</div>
