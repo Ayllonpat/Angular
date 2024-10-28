@@ -5,3 +5,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Asegúrate de que el modal tenga un z-index suficientemente alto */
+.modal {
+    z-index: 1050; /* Asegúrate de que el modal esté por encima de otros elementos */
+}
+
+/* Para asegurarte de que el contenido del modal esté correctamente posicionado */
+.modal-dialog {
+    max-width: 800px; /* O el tamaño que prefieras */
+    margin: 1.75rem auto; /* Centrar el modal */
+}
+
+/* Estilos para el cuerpo del modal */
+.modal-body {
+    padding: 20px; /* Añadir un poco de padding */
+}
+
+/* Para el header del modal */
+.modal-header {
+    border-bottom: none; /* O puedes personalizar el borde */
+}
+
+/* Para el footer del modal */
+.modal-footer {
+    border-top: none; /* O puedes personalizar el borde */
+}
+

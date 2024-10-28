@@ -1,52 +1,63 @@
-import { Component, inject } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PokemonsService } from '../../services/pokemons.service';
-import { PokemonResponsive, Result } from '../../interfaces/pokemons.interface';
-import { PokemonListResponsive } from '../../interfaces/batalla.pokemo.interface';
-import { url } from 'inspector';
+import { Result } from '../../interfaces/pokemons.interface';
 
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',
-  styleUrl: './pokemons.component.css'
+  styleUrls: ['./pokemons.component.css']
 })
 export class PokemonsComponent {
-
-  listaPokemon: Result[] = []
-  pokemonSeleccionados: Result[] = []
+  listaPokemon: Result[] = [];
+  pokemonSeleccionados: Result[] = [];
   buttonCount = 0;
   pokemonCount = 2;
 
-  constructor(private service: PokemonsService) {}
+  constructor(private service: PokemonsService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.getPokemonList();
+  }
 
   getPokemonList(): void {
-
     this.service.getPokemons().subscribe((res) => {
-
       this.listaPokemon = res.results;
-
-    })
+    });
   }
 
   getImage(pokemon: Result): string {
-
-    let id = pokemon.url.match(/\d+/g)?.[1]
+    const id = pokemon.url.match(/\d+/g)?.[1];
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
   }
 
-  capitalizeFirstLetter(string: string) {
+  capitalizeFirstLetter(string: string): string {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  ngOnInit(): void {
-      this.getPokemonList();
+  onCheckClick(pokemon: Result): void {
+    if (this.pokemonSeleccionados.includes(pokemon)) {
+
+      this.pokemonSeleccionados = this.pokemonSeleccionados.filter(p => p !== pokemon);
+      this.buttonCount--;
+      
+    } else if (this.pokemonSeleccionados.length < this.pokemonCount) {
+
+      this.pokemonSeleccionados.push(pokemon);
+      this.buttonCount++;
+    }
   }
 
-  onCheckClick(pokemonClicked: Result | undefined) {
-    this.buttonCount++
-    console.log('Pokemon clicked:', pokemonClicked);    
-    
-    if(this.pokemonSeleccionados)
-    
+  confirmSelection(): void {
+    if (this.pokemonSeleccionados.length === 2) {
+      this.router.navigate(['/batalla'], { state: { pokemonSeleccionados: this.pokemonSeleccionados } });
+    } else {
+      alert('Selecciona exactamente 2 Pokémon antes de continuar.');
+    }
+  }
+
+  deselectAll(): void {
+    this.pokemonSeleccionados = [];
+    this.buttonCount = 0;
   }
 }

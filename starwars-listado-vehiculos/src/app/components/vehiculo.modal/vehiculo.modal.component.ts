@@ -9,11 +9,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class VehiculoModalComponent {
 
-  activeModal = inject(NgbActiveModal)
   @Input() vehiculo!: Vehiculo; 
 
+  constructor(public activeModal: NgbActiveModal) {}
+
   closeModal() {
-    this.activeModal.close();
+    this.activeModal.close('Modal cerrado');
   }
 
 }

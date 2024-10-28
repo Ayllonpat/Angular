@@ -8,4 +8,5 @@ export interface PokemonResponsive {
   export interface Result{
     name: string
     url: string
+    health: number;
   }

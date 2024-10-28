@@ -14,6 +14,7 @@ import { VehiculoModalComponent } from './components/vehiculo.modal/vehiculo.mod
 import { PersonajeModalComponent } from './components/personaje.modal/personaje.modal.component';
 import { MenuComponent } from './components/menu/menu.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

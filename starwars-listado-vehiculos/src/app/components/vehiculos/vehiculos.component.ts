@@ -13,12 +13,12 @@ export class VehiculoListComponent implements OnInit {
   listadoVehiculos: Vehiculo[] = [];
 
   private modalService = inject(NgbModal);
-  
+
   constructor(private vehiculoService: VehiculoService) {}
 
   ngOnInit(): void {
     this.vehiculoService.getVehiculoList().subscribe((respuesta) => { 
-      this.listadoVehiculos = respuesta.results;//si llamamos a la api directamente tiene que ser respuesta.result
+      this.listadoVehiculos = respuesta.results;
     });
   }
 
@@ -26,8 +26,4 @@ export class VehiculoListComponent implements OnInit {
     const modalRef = this.modalService.open(VehiculoModalComponent, { size: 'lg' });
     modalRef.componentInstance.vehiculo = item; 
   }
-
-  //trackByUrl(index: number, item: Vehiculo): string {
-   // return item.url; 
-  //}
 }
