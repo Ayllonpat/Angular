@@ -1,26 +1,23 @@
-<div class="container text-center mt-4">
-  <h2 class="text-danger"><em>¡Batalla Pokémon!</em></h2>
+<div class="container">
+  <h2 class="text-center mt-4 text-danger">¡Comienza la Batalla!</h2>
 
   <div class="row">
-    <div class="col">
-      <h3>{{ pokemonSeleccionados[0]?.name | titlecase }}</h3>
-      <img [src]="getImage(pokemonSeleccionados[0])" alt="Imagen de {{ pokemonSeleccionados[0]?.name }}" />
-      <p>Vida: {{ pokemonSeleccionados[0]?.health }}</p>
+    <div class="col text-center">
+      <h4>{{ capitalizeFirstLetter(pokemonSeleccionados[0].name) }} (Vida: {{ lifePokemon1 }})</h4>
+      <img [src]="getImage(pokemonSeleccionados[0])" alt="{{ pokemonSeleccionados[0]?.name }}" />
     </div>
-    <div class="col">
-      <h3>{{ pokemonSeleccionados[1]?.name | titlecase }}</h3>
-      <img [src]="getImage(pokemonSeleccionados[1])" alt="Imagen de {{ pokemonSeleccionados[1]?.name }}" />
-      <p>Vida: {{ pokemonSeleccionados[1]?.health }}</p>
+    <div class="col text-center">
+      <h4>{{ capitalizeFirstLetter(pokemonSeleccionados[1].name) }} (Vida: {{ lifePokemon2 }})</h4>
+      <img [src]="getImage(pokemonSeleccionados[1])" alt="{{ pokemonSeleccionados[1]?.name }}" />
     </div>
   </div>
 
-  <div class="mt-4">
-    <button class="btn btn-danger" (click)="startBattle()" [disabled]="combatStarted">Iniciar Combate</button>
-    <button class="btn btn-danger" (click)="attack()" [disabled]="!combatStarted">Atacar</button>
+  <div>
+    <button (click)="applyDamage(10)">Atacar (10 de daño)</button>
   </div>
 
-  <div class="mt-4">
-    <h4>Registro de Combate</h4>
+  <div>
+    <h4>Registro de Batalla:</h4>
     <ul>
       <li *ngFor="let log of battleLog">{{ log }}</li>
     </ul>

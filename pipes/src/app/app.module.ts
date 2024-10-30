@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HomeComponent } from './components/home/home.component';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { CustomEurPipe } from './pipes/custom-eur.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+  declarations: [AppComponent, HomeComponent, CustomEurPipe],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { dateFormat: 'dd/MM/YYYY' },
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

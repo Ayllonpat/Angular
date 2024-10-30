@@ -1,58 +1,55 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Result } from '../../interfaces/pokemons.interface';
 
 @Component({
   selector: 'app-batalla-pokemons',
   templateUrl: './batalla-pokemons.component.html',
-  styleUrls: ['./batalla-pokemons.component.css']
+  styleUrls: ['./batalla-pokemons.component.css'],
 })
 export class BatallaPokemonsComponent implements OnInit {
-  @Input() pokemonSeleccionados: Result[] = [];
-  combatStarted = false;
+  pokemonSeleccionados: Result[] = [];
+  pokemonTurn = 1;
+  lifePokemon1 = 100;
+  lifePokemon2 = 100;
   battleLog: string[] = [];
-  currentAttackerIndex = 0;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
+    // Obtener el estado pasado desde la navegación
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state && navigation.extras.state['pokemonSeleccionados']) {
+      this.pokemonSeleccionados = navigation.extras.state['pokemonSeleccionados'];
 
-    if (history.state.pokemonSeleccionados) {
-      this.pokemonSeleccionados = history.state.pokemonSeleccionados;
-
+      // Inicializar salud de los Pokémon
       this.pokemonSeleccionados.forEach(pokemon => {
-        pokemon.health = Math.floor(Math.random() * 100) + 1; 
+        pokemon.health = pokemon.health ?? Math.floor(Math.random() * 100) + 1;
       });
+    } else {
+      alert('No se han seleccionado Pokémon. Regresando a la selección.');
+      this.router.navigate(['/pokemons']);
     }
-    console.log("Pokémon seleccionados:", this.pokemonSeleccionados);
   }
 
   getImage(pokemon: Result): string {
-    if (!pokemon) return '';
-    const id = pokemon.url.match(/\/(\d+)\//)?.[1];
-    return id
-      ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`
-      : '';
+    const id = pokemon.url.match(/\d+/g)?.[1];
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
   }
 
-  startBattle(): void {
-    this.combatStarted = true;
-    this.battleLog.push('¡La batalla ha comenzado!');
+  capitalizeFirstLetter(name: string): string {
+    return name.charAt(0).toUpperCase() + name.slice(1);
   }
 
-  attack(): void {
-    if (!this.combatStarted || this.pokemonSeleccionados.length < 2) return;
-
-    const attacker = this.pokemonSeleccionados[this.currentAttackerIndex];
-    const defender = this.pokemonSeleccionados[1 - this.currentAttackerIndex]; 
-
-    const damage = Math.floor(Math.random() * 16) + 5; 
-    defender.health = Math.max(defender.health - damage, 0); 
-
-    this.battleLog.push(`${attacker.name} ataca a ${defender.name} y causa ${damage} puntos de daño!`);
-
-    if (defender.health === 0) {
-      this.battleLog.push(`${defender.name} ha sido derrotado!`);
-      this.combatStarted = false; 
+  applyDamage(damage: number): void {
+    if (this.pokemonTurn === 1) {
+      this.lifePokemon2 = Math.max(this.lifePokemon2 - damage, 0);
+      this.battleLog.push(`${this.capitalizeFirstLetter(this.pokemonSeleccionados[0].name)} ataca y hace ${damage} de daño`);
+      this.pokemonTurn = 2;
     } else {
-      this.currentAttackerIndex = 1 - this.currentAttackerIndex;
+      this.lifePokemon1 = Math.max(this.lifePokemon1 - damage, 0);
+      this.battleLog.push(`${this.capitalizeFirstLetter(this.pokemonSeleccionados[1].name)} ataca y hace ${damage} de daño`);
+      this.pokemonTurn = 1;
     }
   }
 }

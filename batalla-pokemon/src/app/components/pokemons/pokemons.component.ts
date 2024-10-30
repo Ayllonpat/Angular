@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokemonsService } from '../../services/pokemons.service';
 import { Result } from '../../interfaces/pokemons.interface';
+import { PokemonsService } from '../../services/pokemons.service';
 
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.css']
 })
-export class PokemonsComponent {
+export class PokemonsComponent implements OnInit {
   listaPokemon: Result[] = [];
   pokemonSeleccionados: Result[] = [];
-  buttonCount = 0;
-  pokemonCount = 2;
+  pokemonCount = 2; // Limitar a 2 Pokémon
 
   constructor(private service: PokemonsService, private router: Router) {}
 
@@ -37,27 +36,22 @@ export class PokemonsComponent {
 
   onCheckClick(pokemon: Result): void {
     if (this.pokemonSeleccionados.includes(pokemon)) {
-
       this.pokemonSeleccionados = this.pokemonSeleccionados.filter(p => p !== pokemon);
-      this.buttonCount--;
-      
     } else if (this.pokemonSeleccionados.length < this.pokemonCount) {
-
       this.pokemonSeleccionados.push(pokemon);
-      this.buttonCount++;
     }
   }
 
   confirmSelection(): void {
-    if (this.pokemonSeleccionados.length === 2) {
+    if (this.pokemonSeleccionados.length === this.pokemonCount) {
+      // Navegar y pasar el estado
       this.router.navigate(['/batalla'], { state: { pokemonSeleccionados: this.pokemonSeleccionados } });
     } else {
       alert('Selecciona exactamente 2 Pokémon antes de continuar.');
     }
   }
-
+  
   deselectAll(): void {
     this.pokemonSeleccionados = [];
-    this.buttonCount = 0;
   }
 }
