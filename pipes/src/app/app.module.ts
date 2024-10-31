@@ -15,6 +15,9 @@ import { CustomEurPipe } from './pipes/custom-eur.pipe';
       provide: DATE_PIPE_DEFAULT_OPTIONS,
       useValue: { dateFormat: 'dd/MM/YYYY' },
     },
+    {
+      provide: CustomEurPipe
+    }
   ],
   bootstrap: [AppComponent],
 })
