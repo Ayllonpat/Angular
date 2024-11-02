@@ -1,98 +1,174 @@
 <div class="container-fluid" style="width: 400px">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="text-center">Add new student</h1>
+  <div class="row">
+    <div class="col-12">
+      <h5 class="text-center">Add new student</h5>
+    </div>
+  </div>
+  <div [hidden]="submitted">
+    <form
+      action=""
+      method="post"
+      (ngSubmit)="addStudent()"
+      #studentForm="ngForm"
+    >
+      <div class="row">
+        <div class="col-12 mb-3">
+          <label for="name" class="form-label">Name *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Name"
+            required
+            [(ngModel)]="student.name"
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="lastName" class="form-label">Lastname *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            placeholder="Lastname"
+            required
+            [(ngModel)]="student.lastName"
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="gender" class="form-label">Gender *</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="gender"
+            id="gender"
+            required
+            [(ngModel)]="student.gender"
+          >
+            <option value="" selected="selected">-Select one-</option>
+            <option *ngFor="let gender of genderList" [value]="gender">
+              {{ gender }}
+            </option>
+          </select>
+        </div>
+        <div class="col-6 mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input
+            type="number"
+            class="form-control"
+            id="age"
+            name="age"
+            [(ngModel)]="student.age"
+          />
+        </div>
+        <div class="col-6 mb-3">
+          <label for="phone" class="form-label">Phone number *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            name="phone"
+            placeholder="Phone number"
+            required
+            [(ngModel)]="student.phone"
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="email" class="form-label">Email *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Email number"
+            required
+            [(ngModel)]="student.email"
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="password" class="form-label">Contraseña *</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            required
+            [(ngModel)]="student.password" 
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="confirmPassword" class="form-label">Repetir Contraseña *</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Repetir Contraseña"
+            required
+            [(ngModel)]="confirmPassword" 
+            (input)="checkPasswordMatch()" 
+          />
+          <div *ngIf="passwordMismatch" class="text-danger">
+            Las contraseñas no coinciden. 
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <label for="nif" class="form-label">NIF *</label>
+          <input
+            type="text"
+            class="form-control col-6"
+            id="nif"
+            name="nif"
+            placeholder="NIF (8 digits)"
+            maxlength="8" 
+            [(ngModel)]="student.nif" 
+            (input)="calculateNifLetter()" 
+          />
+          <input
+            type="text"
+            class="form-control mt-2 col-6"
+            id="nifLetter"
+            name="nifLetter"
+            placeholder="NIF Letter"
+            [value]="nifLetter" 
+            readonly 
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="referralSource" class="form-label">¿Cómo conoció la página? *</label>
+          <select
+            class="form-select"
+            id="referralSource"
+            name="referralSource"
+            required
+            [(ngModel)]="student.referralSource"
+          >
+            <option value="" selected="selected">-Seleccione una opción-</option>
+            <option *ngFor="let source of referralSources" [value]="source">
+              {{ source }}
+            </option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width: 100%"
+            [disabled]="!studentForm.form.valid"
+          >
+            Create student
+          </button>
+        </div>
       </div>
-    </div>
-    <div [hidden]="submitted">
-      <form
-        action=""
-        method="post"
-        (ngSubmit)="addStudent()"
-        #studentForm="ngForm"
-      >
-        <div class="row">
-          <div class="col-12 mb-3">
-            <label for="name" class="form-label">Name *</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              placeholder="Name"
-              required
-              [(ngModel)]="student.name"
-            />
-          </div>
-            <div class="col-12 mb-3">
-              <label for="lastName" class="form-label">Lastname *</label>
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                name="lastName"
-                placeholder="Lastname"
-                required
-                [(ngModel)]="student.lastName"
-              />
-            </div>
-          <div class="col-12 mb-3">
-            <label for="gender" class="form-label">Gender *</label>
-  
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              name="gender"
-              id="gender"
-              required
-              [(ngModel)]="student.gender"
-            >
-              <option value="" selected="selected">-Select one-</option>
-              @for(gender of genderList; track gender){
-              <option [value]="gender">{{ gender }}</option>
-              }
-            </select>
-          </div>
-          <div class="col-6 mb-3">
-            <label for="age" class="form-label">Age</label>
-            <input
-              type="number"
-              class="form-control"
-              id="age"
-              name="age"
-              [(ngModel)]="student.age"
-            />
-          </div>
-          <div class="col-6 mb-3">
-            <label for="phone" class="form-label">Phone number *</label>
-            <input
-              type="text"
-              class="form-control"
-              id="phone"
-              name="phone"
-              placeholder="Phone number"
-              required
-              [(ngModel)]="student.phone"
-            />
-          </div>
-          <div class="col-12">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              style="width: 100%"
-              [disabled]="!studentForm.form.valid"
-            >
-              Create student
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="row" [hidden]="!submitted">
-      <div class="col-12">
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-          <div>Formulario enviado</div>
-        </div>
+    </form>
+  </div>
+  <div class="row" [hidden]="!submitted">
+    <div class="col-12">
+      <div class="alert alert-success d-flex align-items-center" role="alert">
+        <div>Formulario enviado</div>
       </div>
     </div>
   </div>
+</div>
